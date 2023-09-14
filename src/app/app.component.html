@@ -1,0 +1,18 @@
+<div *ngIf="!isUserLoggedIn">
+  <mat-toolbar color="primary" class="navbar">
+    <span class="navbar-brand">EMS Discussion Portal</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/login" routerLinkActive="active">Log In</button>
+    <button mat-button routerLink="/signup" routerLinkActive="active">Sign Up</button>
+    
+  </mat-toolbar>
+</div>
+<div *ngIf="isUserLoggedIn">
+  <mat-toolbar color="primary" class="navbar">
+    <span class="navbar-brand">EMS Discussion Portal</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/user/dashboard" routerLinkActive="active">Dashboard</button>
+    <button mat-button (click)="logout()" routerLinkActive="active">Log Out</button>
+  </mat-toolbar>
+</div>
+<router-outlet></router-outlet>
