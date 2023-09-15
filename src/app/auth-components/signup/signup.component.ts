@@ -21,9 +21,10 @@ export class SignupComponent implements OnInit{
   ){}
 
   ngOnInit(){
+    const validators = [Validators.email, Validators.required];
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', validators],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
 
@@ -58,7 +59,11 @@ export class SignupComponent implements OnInit{
         this.snackbar.open(response.message, 'Close', {duration: 5000})
       }
     },(error:any)=>{
-      this.snackbar.open("Registration Failed, Please Try Again Later", 'Close', {duration: 5000})
+      if(error.error){
+        this.snackbar.open(error.error, 'Close', {duration: 5000})
+      }else{
+        this.snackbar.open("Registration Failed, Please Try Again Later", 'Close', {duration: 5000})
+      }
     })
   }
 }
