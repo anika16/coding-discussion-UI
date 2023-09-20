@@ -1,0 +1,48 @@
+<mat-spinner
+  [color]="'primary'"
+  [diameter]="60"
+  [strokeWidth]="6"
+  *ngIf="isSubmitting"
+></mat-spinner>
+<div class="parent" *ngIf="!isSubmitting">
+  <div class="child">
+    <h2 class="question-caption">Post Question</h2>
+    <h2></h2>
+    <form>
+      <div class="form-input">
+        <mat-form-field appearance="fill">
+          <mat-label>Your Tags </mat-label>
+          <mat-chip-grid #chipGrid aria-label="Enter tags">
+            <mat-chip-row
+              *ngFor="let tag of tags"
+              (removed)="remove(tag)"
+              [editable]="true"
+              (edited)="edit(tag, $event)"
+              [aria-description]="'press enter to edit ' + tag.name"
+            >
+              {{ tag.name }}
+              <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input
+              placeholder="New tag..."
+              [matChipInputFor]="chipGrid"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="login-form-button login-form-margin"
+        type="submit"
+      >
+        Post Question
+      </button>
+    </form>
+  </div>
+</div>

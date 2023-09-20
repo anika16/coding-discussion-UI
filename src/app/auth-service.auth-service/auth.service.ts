@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { StorageService } from '../auth-services/storage-service/storage.service';
 
-const BASIC_URL = ['']
+const BASIC_URL = ['http://localhost:8080/']
 export const AUTH_HEADER = "authorization"
 @Injectable({
   providedIn: 'root'
