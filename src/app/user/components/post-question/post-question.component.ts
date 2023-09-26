@@ -4,6 +4,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-question',
@@ -50,7 +51,11 @@ export class PostQuestionComponent implements OnInit{
 
 
 
-  constructor(private service: QuestionService , private fb: FormBuilder){ }
+  constructor(private service: QuestionService , private fb: FormBuilder,
+    private snackBar:MatSnackBar){
+
+
+  }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -62,8 +67,15 @@ export class PostQuestionComponent implements OnInit{
 
   postQuestion(){
     console.log(this.validateForm.value);
-    
-
+    this.service.postQuestion(this.validateForm.value).subscribe((res)=>{
+      console.log(res);
+      if(res.id!=null){
+        this.snackBar.open("Question posted succesfully","Close",{duration:5000});
+      }
+      else{
+        this.snackBar.open("Something went wrong","Close",{duration:5000});
+      }
+    });
   }
   
 

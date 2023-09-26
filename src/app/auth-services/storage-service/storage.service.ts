@@ -8,6 +8,18 @@ const USER = 'c_user';
 })
 export class StorageService {
 
+  static getUserId(): any {
+    const user = this.getUser();
+    if (user == null) {
+      return '';
+    }
+    return user.userId;
+  }
+
+  static getUser() {
+    return JSON.parse(window.localStorage.getItem(USER) as string);
+  }
+
   constructor() { }
 
   static hasToken(): boolean {
