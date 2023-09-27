@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   getAllQuestions(){
     this.service.getAllQuestion(this.pageNum).subscribe((res)=>{
+      debugger
       console.log(res);
       this.questions = res.questionDTOlist;
       this.total = res.totalPages * 5;

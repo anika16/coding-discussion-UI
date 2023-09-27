@@ -24,6 +24,13 @@ export class QuestionService {
       headers:this.createAuthorizationHeader()
     });
   }
+
+  getQuestionById(questionId:number):Observable<any>{
+    return this.http.get<[]>(BASIC_URL+`api/question/${questionId}`,{
+      headers:this.createAuthorizationHeader()
+    });
+  }
+
   createAuthorizationHeader():HttpHeaders{
     let authHeaders = new HttpHeaders();
     return authHeaders.set(
