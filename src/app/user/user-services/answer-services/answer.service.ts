@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
 
-const BASIC_URL = ["http://localhost:8080/"];
+const BASIC_URL = ["http://localhost:9091/"];
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,12 @@ export class AnswerService {
     return authHeaders.set(
       "Authorization","Bearer " +StorageService.getToken()
     )
+  }
+
+  postAnswerImage(file: any, amswerId: number): Observable<any> {
+    return this.http.post<[]>(BASIC_URL + `api/image/${amswerId}`, file,{
+      headers:this.createAuthorizationHeader()
+    });
   }
 
 }
