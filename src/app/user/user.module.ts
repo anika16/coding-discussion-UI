@@ -15,14 +15,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ViewQuestionComponent } from './components/view-question/view-question.component';
-
-
+import { DashboardSearchComponent } from './components/dashboard-search/dashboard-search.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     PostQuestionComponent,
-    ViewQuestionComponent
+    ViewQuestionComponent,
+    DashboardSearchComponent
   ],
   imports: [
     CommonModule,

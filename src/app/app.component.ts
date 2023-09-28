@@ -36,27 +36,4 @@ export class AppComponent implements OnInit{
     this.router.navigateByUrl("/login");
   }
 
-  postQuestionHttp(){
-   return this.http.post<[]>(BASIC_URL + `api/askedQuestion/${5}`, this.askedQuestion,{
-      headers:this.createAuthorizationHeader()
-    })
-  }
-
-  createAuthorizationHeader():HttpHeaders{
-    let authHeaders = new HttpHeaders();
-    return authHeaders.set(
-      "Authorization","Bearer " +StorageService.getToken()
-    )
-  }
-
-  postQuestion(){
-    this.postQuestionHttp().subscribe(
-      (res) => {
-        console.log(res);
-      }
-    )
-  }
-
-
-
 }

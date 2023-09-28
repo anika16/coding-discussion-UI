@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { QuestionService } from '../../user-services/question-service/question.service';
 
 @Component({
@@ -7,11 +7,12 @@ import { QuestionService } from '../../user-services/question-service/question.s
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  queryParams = new URLSearchParams(window.location.search);
   questions: any[]=[];
   pageNum:number=0;
   total!:number;
-
+  paramName= 'search';
+  paramValue = this.queryParams.get(this.paramName);
   constructor(private service: QuestionService){
 
   }
@@ -21,11 +22,10 @@ export class DashboardComponent implements OnInit {
 
   getAllQuestions(){
     this.service.getAllQuestion(this.pageNum).subscribe((res)=>{
-      debugger
-      console.log(res);
+      if(this.paramValue==null){
       this.questions = res.questionDTOlist;
       this.total = res.totalPages * 5;
-      
+      }
     })
   }
 

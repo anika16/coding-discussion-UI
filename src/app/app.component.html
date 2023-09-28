@@ -11,8 +11,7 @@
   <mat-toolbar color="primary" class="navbar">
     <span class="navbar-brand">EMS Discussion Portal</span>
     <span class="spacer"></span>
-    <input type="text" placeholder="Search.." [(ngModel)]="askedQuestion">
-    <button  mat-button  class="button-submit" type="submit" (click)="postQuestion()">Search</button>
+    <app-search-bar></app-search-bar>
     <button mat-button routerLink="/user/dashboard" routerLinkActive="active">Dashboard</button>
     <button mat-button routerLink="/user/question" routerLinkActive="active">Post Question</button>
     <button mat-button (click)="logout()" routerLinkActive="active">Log Out</button>
