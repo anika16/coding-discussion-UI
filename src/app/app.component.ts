@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from './auth-services/storage-service/storage.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
+const BASIC_URL = ["http://localhost:8080/"];
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,7 +13,8 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent implements OnInit{
   title = 'coding-discussion-ui';
   isUserLoggedIn: boolean=false;
-  constructor(private router: Router){
+  askedQuestion: string = '';
+  constructor(private router: Router, private http: HttpClient){
 
   }
   ngOnInit(): void {
@@ -31,4 +35,28 @@ export class AppComponent implements OnInit{
     StorageService.logout();
     this.router.navigateByUrl("/login");
   }
+
+  postQuestionHttp(){
+   return this.http.post<[]>(BASIC_URL + `api/askedQuestion/${5}`, this.askedQuestion,{
+      headers:this.createAuthorizationHeader()
+    })
+  }
+
+  createAuthorizationHeader():HttpHeaders{
+    let authHeaders = new HttpHeaders();
+    return authHeaders.set(
+      "Authorization","Bearer " +StorageService.getToken()
+    )
+  }
+
+  postQuestion(){
+    this.postQuestionHttp().subscribe(
+      (res) => {
+        console.log(res);
+      }
+    )
+  }
+
+
+
 }
