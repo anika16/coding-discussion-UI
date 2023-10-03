@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { QuestionService } from '../../user-services/question-service/question.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-question',
@@ -57,7 +57,8 @@ export class EditQuestionComponent {
   constructor(private service: QuestionService,
     private fb: FormBuilder,
     private snackBar:MatSnackBar,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
     ){}
 
   ngOnInit(): void {
@@ -73,12 +74,14 @@ export class EditQuestionComponent {
     this.service.editQuestion(this.validateForm.value,this.questionId).subscribe((res: any)=>{
       console.log(res);
       if(res.id!=null){
-        this.snackBar.open("Question posted succesfully","Close",{duration:5000});
+        this.snackBar.open("Question updated succesfully","Close",{duration:5000});
       }
       else{
         this.snackBar.open("Something went wrong","Close",{duration:5000});
       }
     });
+    this.router.navigateByUrl('/user/dashboard');
+
   }
 
   getQuestionById(){
