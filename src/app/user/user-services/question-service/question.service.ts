@@ -13,7 +13,7 @@ export class QuestionService {
 
   editQuestion(questionDTO: any, questionId: number) {
     questionDTO.userId = StorageService.getUserId();
-    return this.http.post<[]>(BASIC_URL + `api/edit/question/${questionId}`, questionDTO,{
+    return this.http.put<[]>(BASIC_URL + `api/edit/question/${questionId}`, questionDTO,{
       headers:this.createAuthorizationHeader()
     });
   }
