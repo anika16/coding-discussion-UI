@@ -75,12 +75,13 @@ export class EditQuestionComponent {
       console.log(res);
       if(res.id!=null){
         this.snackBar.open("Question updated succesfully","Close",{duration:5000});
+        this.router.navigateByUrl('/user/dashboard');
       }
       else{
         this.snackBar.open("Something went wrong","Close",{duration:5000});
+        this.router.navigateByUrl('/user/dashboard');
       }
     });
-    this.router.navigateByUrl('/user/dashboard');
 
   }
 

@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   }
   ngOnInit(): void {
-      this.getAllQuestions();
+    this.getAllQuestions();
   }
 
   getAllQuestions(){
