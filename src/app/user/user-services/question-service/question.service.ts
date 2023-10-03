@@ -10,7 +10,6 @@ const BASIC_URL = ["http://localhost:8080/"];
 })
 export class QuestionService {
 
-
   editQuestion(questionDTO: any, questionId: number) {
     questionDTO.userId = StorageService.getUserId();
     return this.http.put<[]>(BASIC_URL + `api/edit/question/${questionId}`, questionDTO,{
@@ -35,6 +34,13 @@ export class QuestionService {
 
   getQuestionById(questionId:number):Observable<any>{
     return this.http.get<[]>(BASIC_URL+`api/question/${questionId}`,{
+      headers:this.createAuthorizationHeader()
+    });
+  }
+
+  getAllQuestionsAskedByMe():Observable<any> {
+    const userId = StorageService.getUserId();
+    return this.http.get<[]>(BASIC_URL+`api/questionPosted/${userId}`,{
       headers:this.createAuthorizationHeader()
     });
   }

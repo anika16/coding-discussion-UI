@@ -17,6 +17,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ViewQuestionComponent } from './components/view-question/view-question.component';
 import { DashboardSearchComponent } from './components/dashboard-search/dashboard-search.component';
 import { EditQuestionComponent } from './components/edit-question/edit-question.component';
+import { AskedByMeComponent } from './components/asked-by-me/asked-by-me.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditQuestionComponent } from './components/edit-question/edit-question.
     PostQuestionComponent,
     ViewQuestionComponent,
     DashboardSearchComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    AskedByMeComponent
   ],
   imports: [
     CommonModule,
