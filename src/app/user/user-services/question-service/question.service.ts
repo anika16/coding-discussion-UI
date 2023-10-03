@@ -10,6 +10,14 @@ const BASIC_URL = ["http://localhost:8080/"];
 })
 export class QuestionService {
 
+
+  editQuestion(questionDTO: any, questionId: number) {
+    questionDTO.userId = StorageService.getUserId();
+    return this.http.post<[]>(BASIC_URL + `api/question/${questionId}`, questionDTO,{
+      headers:this.createAuthorizationHeader()
+    });
+  }
+
   constructor(private http: HttpClient) { }
 
   postQuestion(questionDTO: any): Observable<any> {

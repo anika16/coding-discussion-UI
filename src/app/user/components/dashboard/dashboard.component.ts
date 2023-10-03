@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { QuestionService } from '../../user-services/question-service/question.service';
+import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +8,7 @@ import { QuestionService } from '../../user-services/question-service/question.s
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
   queryParams = new URLSearchParams(window.location.search);
   questions: any[]=[];
   pageNum:number=0;
@@ -22,9 +24,12 @@ export class DashboardComponent implements OnInit {
 
   getAllQuestions(){
     this.service.getAllQuestion(this.pageNum).subscribe((res)=>{
-      if(this.paramValue==null){
-      this.questions = res.questionDTOlist;
-      this.total = res.totalPages * 5;
+      if(this.paramValue == null){
+        this.questions = res.questionDTOlist;
+        this.questions.forEach(question => {
+          question['isQuestionEditable'] = question.userId === StorageService.getUserId();
+        })
+        this.total = res.totalPages * 5;
       }
     })
   }
@@ -32,6 +37,5 @@ export class DashboardComponent implements OnInit {
   pageIndexChange(event:any){
     this.pageNum = event.pageIndex;
     this.getAllQuestions();
-
   }
 }

@@ -28,6 +28,9 @@
                             Posted On: <b> {{ question.createdDate | date }} </b>
                         </h5>
                     </div>
+                    <div *ngIf="question.isQuestionEditable">
+                        <button mat-raised-button color="primary" routerLink="/user/edit/question/{{question.id}}">Edit</button>
+                    </div>
                 </div>
             </ng-template>
 
