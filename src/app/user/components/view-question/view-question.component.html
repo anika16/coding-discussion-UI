@@ -20,7 +20,7 @@
 <h2>Answers</h2>
   <div>
     <div>
-      <h5>Answerd by: <b>{{ answer.username }}</b> Answered on: <b>{{ answer.createdDate | date:'MMM d, y, h:mm a' }}</b>
+      <h5>Answerd by: <b>{{ answer.userName }}</b> Answered on: <b>{{ answer.createdDate | date:'MMM d, y, h:mm a' }}</b>
       </h5>
       <p>{{ answer.body }}</p>
       <div *ngIf="answer.convertedImg">
@@ -29,31 +29,24 @@
     </div>
   </div>
 </div>
-
 <div class="answer-section" style="margin-top: 30px">
   <div>
     <div>
       <h2>Post Answer</h2>
     </div>
-
     <form [formGroup]="validateForm" (ngSubmit)="addAnswer()">
       <div class="form-field">
-        <mat-form-field appearance="fill">
-          <mat-label>Subject</mat-label>
-
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+          <mat-label>Add your answer here</mat-label>
           <textarea matInput rows="2" placeholder="Solution ...." formControlName="body"></textarea>
         </mat-form-field>
       </div>
-
       <div class="form-field">
         <div class="image-preview" *ngIf="selectedFile">
           <img [src]="imagePreview" height="50" alt="Image Preview">
         </div>
         <input id="file" accept="image/png, image/jpeg" (change)="onFileSelected($event)" type="file">
       </div>
-
-
-
       <button mat-raised-button color="accent">Post Your Answer</button>
     </form>
   </div>

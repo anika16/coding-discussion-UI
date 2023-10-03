@@ -5,6 +5,7 @@ import { SignupComponent } from './auth-components/signup/signup.component';
 import { NoAuthGuard } from './auth-guards/noAuth-guard/no-auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirect '/' to '/login'
   {path: 'login', component:LoginComponent, canActivate: [NoAuthGuard]},
   {path:'signup',component:SignupComponent, canActivate: [NoAuthGuard]},
   {path:'user',loadChildren:()=> import("./user/user.module").then(m => m.UserModule)}
