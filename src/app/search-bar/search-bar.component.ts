@@ -3,7 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
 import { DashboardService } from '../user/user-services/dashboard-service/dashboard.service';
-const BASIC_URL = ["http://localhost:8080/"];
+import { BACKEND_URL } from '../constants';
+const BASIC_URL = BACKEND_URL;
 
 @Component({
   selector: 'app-search-bar',

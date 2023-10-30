@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from './auth-services/storage-service/storage.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BACKEND_URL } from './constants';
 
 
-const BASIC_URL = ["http://localhost:8080/"];
+const BASIC_URL = BACKEND_URL;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
