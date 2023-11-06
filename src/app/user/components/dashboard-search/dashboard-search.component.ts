@@ -16,7 +16,9 @@ export class DashboardSearchComponent {
   paramName = 'search';
   paramValue = '';
 
-  constructor(private service: DashboardService, private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private service: DashboardService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router) {}
 
   ngOnInit(): void {
       this.activatedRoute.queryParams.subscribe((queryParams) => {
@@ -26,13 +28,17 @@ export class DashboardSearchComponent {
   }
 
   postQuestion(question: string) {
-    this.service.postQuestionHttp(question).subscribe(
-      (res: any) => {
-        this.questions = res.questionDTOlist;
-      },
-      (error: any) => {
-        console.error('Error fetching questions:', error);
-      }
-    );
+    if (question.length > 0) {
+      this.service.postQuestionHttp(question).subscribe(
+        (res: any) => {
+          this.questions = res.questionDTOlist;
+        },
+        (error: any) => {
+          console.error("Error fetching questions:", error);
+        }
+      );
+    } else {
+      this.router.navigateByUrl("/user/dashboard");
+    }
   }
 }

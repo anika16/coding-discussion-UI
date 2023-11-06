@@ -14,13 +14,15 @@ import { HttpClientModule} from '@angular/common/http'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ForgottenPasswordComponent } from './auth-components/forgotten-password/forgotten-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ForgottenPasswordComponent
   ],
   imports: [
     BrowserModule,

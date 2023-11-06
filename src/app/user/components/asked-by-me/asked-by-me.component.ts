@@ -19,12 +19,10 @@ export class AskedByMeComponent {
 
   }
   ngOnInit(): void {
-    debugger
     this.getAllQuestionsAskedByMe();
 }
 
 getAllQuestionsAskedByMe(){
-  debugger
   this.service.getAllQuestionsAskedByMe().subscribe((res)=>{
     this.questions = res.questionDTOlist;
   })

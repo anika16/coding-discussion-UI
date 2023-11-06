@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { QuestionService } from '../../user-services/question-service/question.service';
 import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
+import { DashboardService } from '../../user-services/dashboard-service/dashboard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +17,15 @@ export class DashboardComponent implements OnInit {
   total!:number;
   paramName= 'search';
   paramValue = this.queryParams.get(this.paramName);
-  constructor(private service: QuestionService){
+  constructor(private service: QuestionService, private dashboardService: DashboardService, private router: Router,){
 
   }
   ngOnInit(): void {
     this.getAllQuestions();
+  }
+
+  searchWithTag(tag: string){
+    this.router.navigateByUrl("/user/askedQuestion?search=" + tag);
   }
 
   getAllQuestions(){

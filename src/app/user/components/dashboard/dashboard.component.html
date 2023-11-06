@@ -18,7 +18,7 @@
                         <div class="tags-container">
                             <mat-chip-listbox>
                                 <mat-chip *ngFor="let tag of question.tags"> 
-                                    {{ tag }}
+                                    <div (click)="searchWithTag(tag)">{{tag}}</div>
                                 </mat-chip>
                             </mat-chip-listbox>
                         </div>
