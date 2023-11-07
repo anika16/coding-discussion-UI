@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QuestionService } from '../../user-services/question-service/question.service';
 import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asked-by-me',
@@ -15,16 +16,23 @@ export class AskedByMeComponent {
   total!:number;
   paramName= 'search';
   paramValue = this.queryParams.get(this.paramName);
-  constructor(private service: QuestionService){
+  constructor(private service: QuestionService, private router: Router){
 
   }
   ngOnInit(): void {
     this.getAllQuestionsAskedByMe();
 }
 
-getAllQuestionsAskedByMe(){
-  this.service.getAllQuestionsAskedByMe().subscribe((res)=>{
-    this.questions = res.questionDTOlist;
-  })
-}
+  getAllQuestionsAskedByMe(){
+    this.service.getAllQuestionsAskedByMe().subscribe((res)=>{
+      this.questions = res.questionDTOlist;
+      this.questions.forEach(question => {
+        question['isQuestionEditable'] = question.userId === StorageService.getUserId();
+      })
+    })
+  }
+
+  searchWithTag(tag: string){
+    this.router.navigateByUrl("/user/askedQuestion?search=" + tag);
+  }
 }

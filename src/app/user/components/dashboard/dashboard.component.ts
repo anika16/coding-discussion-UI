@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   total!:number;
   paramName= 'search';
   paramValue = this.queryParams.get(this.paramName);
-  constructor(private service: QuestionService, private dashboardService: DashboardService, private router: Router,){
+  constructor(private service: QuestionService, private router: Router){
 
   }
   ngOnInit(): void {
