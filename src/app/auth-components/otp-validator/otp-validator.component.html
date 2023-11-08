@@ -1,0 +1,27 @@
+<div class="opt-password-container">
+    <!-- <fieldset [disabled]="false"> -->
+    <mat-card class="opt-password-card">
+        <mat-card-content>
+            <h2 class="forgotten-password-caption">Enter OTP to Proceed</h2>
+            <form [formGroup]="loginForm">
+                <div class="form-input">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Enter your email" name="email" type="email"
+                            formControlName="email">    
+                       </mat-form-field>
+                       <mat-form-field>
+                       <mat-label>Enter OTP</mat-label>
+                            <input matInput placeholder="Enter your email" name="email" type="email"
+                                formControlName="email">
+                       </mat-form-field> 
+                </div>
+                <b>Enter OPT in {{display}} Seconds</b>
+                <button type="submit" mat-raised-button color="primary" class="submit-button"
+                    [disabled]="loginForm.invalid || loginForm.disabled" (click)="submitOpt()">Submit</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+<!-- </fieldset> -->
+
+</div>

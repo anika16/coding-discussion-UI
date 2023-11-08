@@ -15,6 +15,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ForgottenPasswordComponent } from './auth-components/forgotten-password/forgotten-password.component';
+import { OtpValidatorComponent } from './auth-components/otp-validator/otp-validator.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ForgottenPasswordComponent } from './auth-components/forgotten-password
     LoginComponent,
     SignupComponent,
     SearchBarComponent,
-    ForgottenPasswordComponent
+    ForgottenPasswordComponent,
+    OtpValidatorComponent
   ],
   imports: [
     BrowserModule,
