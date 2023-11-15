@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth-service.auth-service/auth.service';
+import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
 
 @Component({
   selector: 'app-otp-validator',
@@ -11,23 +14,45 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class OtpValidatorComponent {
   display: any;
   isValidOPT:boolean=true;
-  loginForm!:FormGroup;
-  constructor( 
+  otpForm!:FormGroup;
+  constructor(
+    private service: AuthService, 
     private fb: FormBuilder,
+    private storageService: StorageService,
+    private router: Router,
     private snackBar:MatSnackBar){
-      this.timer(1);
+      this.timer(5);
       
 
   }
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
-     email:['', Validators.required],
+    this.otpForm = this.fb.group({
+     email:[StorageService.getOtpUser(), Validators.required],
+     otp: ['', Validators.required]
     })
    }
 
    
-  submitOpt(){
-
+  submitOtp(){
+    this.service.submitOtp(
+      this.otpForm.get(['email'])!.value,
+      this.otpForm.get(['otp'])!.value
+    ).subscribe(
+      (response)=>{
+      console.log(response);
+      this.snackBar.open("OTP validation Successful", 'Close', {duration: 5000})
+      this.router.navigateByUrl("reset-password");
+    },
+      error=>{
+        if(error.error){
+          this.snackBar.open(error.error, 'Close', {duration: 5000})
+        }else{
+          this.snackBar.open("Something went wrong, Please try again later.", 'Close', {duration: 5000})
+        }
+        StorageService.removeOtpUser();
+      }
+    )
+    this.storageService.saveOtpValidated();
   }
 
 
@@ -50,7 +75,7 @@ export class OtpValidatorComponent {
       if (seconds == 0) {
         console.log("finished");
         clearInterval(timer);
-        this.loginForm.disable();
+        this.otpForm.disable();
       }
       
     }, 1000);

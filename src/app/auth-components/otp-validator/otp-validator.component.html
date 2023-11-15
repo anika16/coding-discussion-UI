@@ -2,23 +2,23 @@
     <!-- <fieldset [disabled]="false"> -->
     <mat-card class="opt-password-card">
         <mat-card-content>
-            <h2 class="forgotten-password-caption">Enter OTP to Proceed</h2>
-            <form [formGroup]="loginForm">
+            <h2 class="opt-password-caption">Enter OTP to Proceed</h2>
+            <form [formGroup]="otpForm">
                 <div class="form-input">
                     <mat-form-field>
                         <mat-label>Email</mat-label>
                         <input matInput placeholder="Enter your email" name="email" type="email"
-                            formControlName="email">    
+                            formControlName="email" [readonly]="true">    
                        </mat-form-field>
                        <mat-form-field>
                        <mat-label>Enter OTP</mat-label>
-                            <input matInput placeholder="Enter your email" name="email" type="email"
-                                formControlName="email">
+                            <input matInput placeholder="Enter your OTP" name="otp"
+                                formControlName="otp">
                        </mat-form-field> 
                 </div>
                 <b>Enter OPT in {{display}} Seconds</b>
                 <button type="submit" mat-raised-button color="primary" class="submit-button"
-                    [disabled]="loginForm.invalid || loginForm.disabled" (click)="submitOpt()">Submit</button>
+                    [disabled]="otpForm.invalid || otpForm.disabled" (click)="submitOtp()">Submit</button>
             </form>
         </mat-card-content>
     </mat-card>

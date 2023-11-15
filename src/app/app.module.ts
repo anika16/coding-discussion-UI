@@ -16,6 +16,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ForgottenPasswordComponent } from './auth-components/forgotten-password/forgotten-password.component';
 import { OtpValidatorComponent } from './auth-components/otp-validator/otp-validator.component';
+import { ResetPasswordComponent } from './auth-components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OtpValidatorComponent } from './auth-components/otp-validator/otp-valid
     SignupComponent,
     SearchBarComponent,
     ForgottenPasswordComponent,
-    OtpValidatorComponent
+    OtpValidatorComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
