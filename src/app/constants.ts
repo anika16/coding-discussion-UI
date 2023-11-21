@@ -1,1 +1,1 @@
-export const BACKEND_URL = ['http://localhost:8080/codingdiscussion/']
+export const BACKEND_URL = ['http://localhost:8081/']

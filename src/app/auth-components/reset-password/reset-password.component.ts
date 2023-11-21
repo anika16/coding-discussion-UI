@@ -60,6 +60,7 @@ export class ResetPasswordComponent implements OnInit {
         }
         StorageService.removeOtpUser();
         StorageService.removeOtpValidated();
+        this.router.navigateByUrl("login");
       }
     )  
     StorageService.removeOtpUser();

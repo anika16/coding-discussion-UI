@@ -43,9 +43,9 @@ export class ForgottenPasswordComponent implements OnInit {
           this.snackBar.open("Something went wrong, Please try again later.", 'Close', {duration: 5000})
         }
         StorageService.removeOtpUser();
+        this.router.navigateByUrl("login");
       }
     )
-    debugger
     this.storageService.saveUserForOtp(this.forgotPasswordForm.get(['email'])!.value);
     this.router.navigateByUrl("otp-validator");
   }
