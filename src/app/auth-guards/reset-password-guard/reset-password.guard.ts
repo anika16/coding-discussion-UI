@@ -13,7 +13,7 @@ export class ResetPasswordGuard  implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     debugger
-    if(!StorageService.getOtpValidated()){
+    if(!StorageService.isOtpValidated() || StorageService.isOtpValidated().toLowerCase() === 'false'){
       this.router.navigateByUrl('login');
       this.snackBar.open(
         "You have to validate OTP first", "Close",

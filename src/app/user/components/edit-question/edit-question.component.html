@@ -22,7 +22,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <!-- <div class="form-input">
+      <div class="form-input" *ngIf="isEditable()">
         <mat-form-field appearance="fill">
           <mat-label>Your Tags </mat-label>
           <mat-chip-grid #chipGrid aria-label="Enter tags" formControlName="tags">
@@ -38,7 +38,10 @@
               (matChipInputTokenEnd)="add($event)" />
           </mat-chip-grid>
         </mat-form-field>
-      </div> -->
+      </div>
+      <div *ngIf="!isEditable()">
+        Only Admins can edit tags!!!
+      </div>
       <button mat-raised-button color="primary" class="login-form-button login-form-margin" type="submit"
         [disabled]="validateForm.invalid"
         (click)="editQuestion()">

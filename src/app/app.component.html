@@ -11,6 +11,7 @@
   <mat-toolbar color="primary" class="navbar">
     <span class="navbar-brand" routerLink="/user/dashboard" routerLinkActive="active">EMS Discussion Portal</span>
     <span class="spacer"></span>
+    <button [ngClass]="{'user-tab-admin': isVisible(),'user-tab-standard': !isVisible()}" mat-button routerLink="user/users" routerLinkActive="active">Users</button>
     <app-search-bar></app-search-bar>
     <button mat-button routerLink="/user/askedByMe" routerLinkActive="active">Asked By Me</button>
     <button mat-button routerLink="/user/dashboard" routerLinkActive="active">Dashboard</button>

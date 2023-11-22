@@ -37,4 +37,11 @@ export class AppComponent implements OnInit{
     this.router.navigateByUrl("/login");
   }
 
+  isVisible(){
+    if(StorageService.getIsAdmin().toLowerCase() === 'true'){
+      return true;
+    }
+    return false;
+  }
+
 }

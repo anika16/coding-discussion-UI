@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
       if(this.paramValue == null){
         this.questions = res.questionDTOlist;
         this.questions.forEach(question => {
-          question['isQuestionEditable'] = question.userId === StorageService.getUserId();
+          question['isQuestionEditable'] = (question.userId === StorageService.getUserId() || StorageService.getIsAdmin().toLowerCase() === 'true');
         })
         this.total = res.totalPages * 5;
       }

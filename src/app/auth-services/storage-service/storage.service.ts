@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 
 const TOKEN ='c_token';
 const USER = 'c_user';
-const OTP_USER = 'c_otp_user'
-const IS_OTP_VALIDATED = 'isOtpValidated'
+const OTP_USER = 'c_otp_user';
+const IS_OTP_VALIDATED = 'isOtpValidated';
+const IS_ADMIN = 'isAdmin';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class StorageService {
     if (user == null) {
       return '';
     }
-    return user.userId;
+    return user;
   }
 
   static getUser() {
@@ -38,12 +39,16 @@ export class StorageService {
     return true;
   }
 
-  static isOtpValidated(): boolean {
+  static isOtpValidated(): string {
     return this.getOtpValidated();
   }
 
-  static getOtpValidated(): boolean {
-    return window.localStorage.getItem(IS_OTP_VALIDATED) as unknown as boolean;
+  static getIsAdmin(): string {
+    return window.localStorage.getItem(IS_ADMIN) as string;
+  }
+
+  static getOtpValidated(): string {
+    return window.localStorage.getItem(IS_OTP_VALIDATED) as string;
   }
 
   public saveOtpValidated() {
@@ -53,7 +58,9 @@ export class StorageService {
 
   public saveUser(user:any){
     window.localStorage.removeItem(USER);
-    window.localStorage.setItem(USER,JSON.stringify(user));
+    window.localStorage.setItem(USER,user.userId);
+    window.localStorage.removeItem(IS_ADMIN);
+    window.localStorage.setItem(IS_ADMIN,user.isAdmin[0]);
   }
 
   public saveUserForOtp(email:any){
@@ -93,5 +100,9 @@ export class StorageService {
   static logout(){
     window.localStorage.removeItem(TOKEN);
     window.localStorage.removeItem(USER);
+    window.localStorage.removeItem(OTP_USER);
+    window.localStorage.removeItem(IS_ADMIN);
+    window.localStorage.removeItem(IS_OTP_VALIDATED);
+    
   }
 }

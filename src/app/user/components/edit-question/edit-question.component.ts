@@ -6,6 +6,7 @@ import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { QuestionService } from '../../user-services/question-service/question.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
 
 @Component({
   selector: 'app-edit-question',
@@ -65,7 +66,8 @@ export class EditQuestionComponent {
     this.getQuestionById();
     this.validateForm = this.fb.group({
       title: ['', Validators.required],
-      body: ['', Validators.required]
+      body: ['', Validators.required],
+      tags: ['', Validators.required]
     }) 
   }
 
@@ -85,13 +87,24 @@ export class EditQuestionComponent {
 
   }
 
+  isEditable(){
+    if(StorageService.getIsAdmin().toLowerCase() === 'true'){
+      return true;
+    }
+    return false;
+  }
+
   getQuestionById(){
     this.service.getQuestionById(this.questionId).subscribe((res) => {
       console.log(res);
       this.question = res.questionDTO;
+      this.question.tags.forEach((tag: string) => {
+        this.tags.push({ name : tag})
+      });
       this.validateForm =this.fb.group({
         title: [this.question.title, Validators.required],
-        body: [this.question.body, Validators.required]
+        body: [this.question.body, Validators.required],
+        tags: [this.tags, Validators.required]
       })
     })
   }
