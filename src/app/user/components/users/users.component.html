@@ -1,0 +1,19 @@
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Admin Rights</th>
+        <th>User Access</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td><button class="admin-button" (click)="makeAdmin(user.id)">Make Admin</button></td>
+        <td><button class="delete-button" (click)="toggleUserAccess(user.id)">Toggle User Access</button></td>
+      </tr>
+    </tbody>
+  </table>
+  

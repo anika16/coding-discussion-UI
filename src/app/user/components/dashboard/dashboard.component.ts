@@ -33,6 +33,9 @@ export class DashboardComponent implements OnInit {
       if(this.paramValue == null){
         this.questions = res.questionDTOlist;
         this.questions.forEach(question => {
+          if(question.userId ==0){
+            question.userName="Unkown User";
+          }
           question['isQuestionEditable'] = (question.userId === StorageService.getUserId() || StorageService.getIsAdmin().toLowerCase() === 'true');
         })
         this.total = res.totalPages * 5;

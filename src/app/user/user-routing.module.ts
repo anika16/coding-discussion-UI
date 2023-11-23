@@ -7,7 +7,7 @@ import { ViewQuestionComponent } from './components/view-question/view-question.
 import { DashboardSearchComponent } from './components/dashboard-search/dashboard-search.component';
 import { EditQuestionComponent } from './components/edit-question/edit-question.component';
 import { AskedByMeComponent } from './components/asked-by-me/asked-by-me.component';
-import { UsersComponent } from './users/users.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {path:'dashboard',component: DashboardComponent, canActivate: [UserAuthGuard]},
