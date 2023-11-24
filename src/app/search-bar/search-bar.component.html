@@ -1,2 +1,5 @@
-<button  mat-button routerLink="/user/askedQuestion" routerLinkActive="active" [queryParams]="{ search: askedQuestion }" class="button-submit" type="submit">SEARCH</button>
-<input type="text" placeholder="Search.." [(ngModel)]="askedQuestion">
+<div class="search-container">
+    <input type="text" placeholder="Search.." [(ngModel)]="askedQuestion" class="search-input">
+    <button mat-button routerLink="/user/askedQuestion" routerLinkActive="active" [queryParams]="{ search: askedQuestion }" class="button-submit" type="submit">SEARCH</button>
+</div>
+  

@@ -9,6 +9,7 @@ interface User {
   name: string;
   email: string;
   admin:boolean;
+  locked:boolean;
 }
 @Component({
   selector: 'app-users',
@@ -35,8 +36,18 @@ export class UsersComponent implements OnInit{
       }
     );
   }
-
-  
+  setAdminEnabled(user: User): boolean {
+    return !user.admin;
+  }
+  toggleAdminEnabled(user: User): void {
+    user.admin = !user.admin;
+  }
+  setLockedEnabled(user: User): boolean {
+    return !user.locked;
+  }
+  toggleUserLock(user: User): void {
+    user.locked = !user.locked;
+  }
   getAllUsers(){
       this.service.getAllUsers().subscribe((res)=>{
           this.users = res;
