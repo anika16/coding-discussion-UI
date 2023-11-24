@@ -29,9 +29,11 @@ export class UsersComponent implements OnInit{
     makeAdmin(userId: number): void {
     this.service.makeAdmin(userId).subscribe(
       (res) => {
+        this.snackBar.open(`User made as Admin successfully.`, 'Close', {duration: 5000})
         console.log(`User with userId ${userId} made as Admin successfully.`);
       },
       (error) => {
+        this.snackBar.open("Something went wrong, Please try again later.", 'Close', {duration: 5000})
         console.error('Error changing user access:', error);
       }
     );
@@ -41,6 +43,7 @@ export class UsersComponent implements OnInit{
   }
   toggleAdminEnabled(user: User): void {
     user.admin = !user.admin;
+    user.locked =false;
   }
   setLockedEnabled(user: User): boolean {
     return !user.locked;
@@ -57,10 +60,12 @@ export class UsersComponent implements OnInit{
     toggleUserAccess(userId: number): void {
     this.service.toggleUserAccess(userId).subscribe(
       (res) => {
+        this.snackBar.open(`User's access is now changed successfully.`, 'Close', {duration: 5000})
         console.log(`User with userId ${userId}'s access is now changed successfully.`);
       },
       (error) => {
-        console.error('Error changing user access:', error);
+        this.snackBar.open("Something went wrong, Please try again later.", 'Close', {duration: 5000})
+        console.error('Error changing user access:');
       }
     );
   }

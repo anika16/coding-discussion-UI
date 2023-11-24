@@ -12,7 +12,7 @@
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
         <td> <button [ngClass]="{'enabled-button': setAdminEnabled(user), 'admin-button': !setAdminEnabled(user)}"(click)="makeAdmin(user.id);toggleAdminEnabled(user)" [disabled]="!setAdminEnabled(user)">{{ setAdminEnabled(user) ? 'Make admin' : 'Admin' }} </button></td>
-        <td><button [ngClass]="{'enabled-button': !setLockedEnabled(user), 'lock-button': setLockedEnabled(user)}" (click)="toggleUserAccess(user.id);toggleUserLock(user)"> {{ setLockedEnabled(user) ? 'Lock User' : 'Unlock User' }}</button></td>
+        <td><button [ngClass]="{'enabled-button': !setLockedEnabled(user), 'lock-button': setLockedEnabled(user)}" (click)="toggleUserAccess(user.id);toggleUserLock(user)" [disabled]="user.admin"> {{ setLockedEnabled(user) ? 'Lock User' : 'Unlock User' }}</button></td>
       </tr>
     </tbody>
   </table>

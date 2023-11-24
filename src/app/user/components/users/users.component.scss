@@ -47,3 +47,9 @@ table {
     color: white;
     border: none;
   }
+  
+  .lock-button:disabled{
+    background-color: gray;
+    color: white; 
+    border: none;
+  }
