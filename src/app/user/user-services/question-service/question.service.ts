@@ -2,9 +2,10 @@ import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
+import { ConfigService } from 'src/app/config.service';
 import { BACKEND_URL } from 'src/app/constants';
 
-const BASIC_URL = BACKEND_URL;
+let BASIC_URL = "";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class QuestionService {
     });
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configService: ConfigService) {
+    BASIC_URL = this.configService.baseUrl as string;
+   }
 
   postQuestion(questionDTO: any): Observable<any> {
     questionDTO.userId = StorageService.getUserId();

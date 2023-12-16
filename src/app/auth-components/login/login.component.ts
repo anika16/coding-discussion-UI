@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth-service.auth-service/auth.service';
+import { AuthService } from 'src/app/auth-services/auth-service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit{
         this.router.navigateByUrl("user/dashboard");
     },
       error=>{
-        this.snackBar.open('Bad credentials','Close',{
+        this.snackBar.open(error.error,'Close',{
           duration:5000,
           panelClass:'error-snackbar'
         });

@@ -1,16 +1,19 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, map, tap } from "rxjs";
-import { StorageService } from "../auth-services/storage-service/storage.service";
-import { BACKEND_URL } from "../constants";
+import { StorageService } from "../storage-service/storage.service";
+import { BACKEND_URL } from "../../constants";
+import { ConfigService } from "../../config.service";
 
-const BASIC_URL = BACKEND_URL;
+let BASIC_URL = "";
 export const AUTH_HEADER = "authorization";
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  constructor(private http: HttpClient, private storage: StorageService) {}
+  constructor(private http: HttpClient, private storage: StorageService, private configService: ConfigService) {
+    BASIC_URL = this.configService.baseUrl as string;
+  }
 
   forgotPassword(email: string) {
     return this.http.post(BASIC_URL + "forgot-password", email, {responseType: 'text'}

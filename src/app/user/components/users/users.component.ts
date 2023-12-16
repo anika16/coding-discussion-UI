@@ -52,9 +52,18 @@ export class UsersComponent implements OnInit{
     user.locked = !user.locked;
   }
   getAllUsers(){
-      this.service.getAllUsers().subscribe((res)=>{
+      this.service.getAllUsers().subscribe(
+        (res)=>{
           this.users = res;
-        })
+        },
+        error => {
+          this.snackBar.open('Something went wrong','Close',{
+            duration:5000,
+            panelClass:'error-snackbar'
+          });
+        }
+        )
+        
       }
     
     toggleUserAccess(userId: number): void {

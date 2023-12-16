@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
 import { DashboardService } from '../user/user-services/dashboard-service/dashboard.service';
 import { BACKEND_URL } from '../constants';
-const BASIC_URL = BACKEND_URL;
 
 @Component({
   selector: 'app-search-bar',
