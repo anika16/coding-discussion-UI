@@ -69,9 +69,7 @@ export class PostQuestionComponent implements OnInit{
   }
 
   postQuestion(){
-    console.log(this.validateForm.value);
     this.service.postQuestion(this.validateForm.value).subscribe((res)=>{
-      console.log(res);
       if(res.id!=null){
         this.snackBar.open("Question posted succesfully","Close",{duration:5000});
         this.router.navigateByUrl('/user/dashboard');

@@ -28,13 +28,11 @@ export class LoginComponent implements OnInit{
   }
 
   login():void{
-    console.log(this.loginForm.value);
     this.service.login(
       this.loginForm.get(['email'])!.value,
       this.loginForm.get(['password'])!.value,
     ).subscribe(
       (response)=>{
-      console.log(response);
         this.router.navigateByUrl("user/dashboard");
     },
       error=>{

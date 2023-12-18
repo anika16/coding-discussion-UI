@@ -72,9 +72,7 @@ export class EditQuestionComponent {
   }
 
   editQuestion(){
-    console.log(this.validateForm.value);
     this.service.editQuestion(this.validateForm.value,this.questionId).subscribe((res: any)=>{
-      console.log(res);
       if(res.id!=null){
         this.snackBar.open("Question updated succesfully","Close",{duration:5000});
         this.router.navigateByUrl('/user/dashboard');
@@ -96,7 +94,6 @@ export class EditQuestionComponent {
 
   getQuestionById(){
     this.service.getQuestionById(this.questionId).subscribe((res) => {
-      console.log(res);
       this.question = res.questionDTO;
       this.question.tags.forEach((tag: string) => {
         this.tags.push({ name : tag})

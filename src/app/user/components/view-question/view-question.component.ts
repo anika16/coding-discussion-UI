@@ -40,7 +40,6 @@ export class ViewQuestionComponent implements OnInit {
 
   getQuestionById(){
     this.questionService.getQuestionById(this.questionId).subscribe((res) => {
-      console.log(res);
       this.question = res.questionDTO;
       res.answerDTOList.forEach((element: any) => {
         if(element.file != null){
@@ -53,7 +52,6 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   addAnswer(){
-    console.log(this.validateForm.value);
     const data = this.validateForm.value;
     data.questionId = this.questionId;
     data.userId = StorageService.getUserId();
@@ -61,11 +59,9 @@ export class ViewQuestionComponent implements OnInit {
     this.answerService.postAnswer(data).subscribe((res) => {
     this.answerService.postAnswerImage(this.formData, res.id).subscribe(
       (res) => {
-        console.log("Image Post",res);
       }
     );
 
-      console.log(res);
       if(res.id != null){
         this.snackBar.open("Answer posted successfully", "Close", {duration:5000});
       }

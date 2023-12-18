@@ -33,7 +33,6 @@ export class ForgottenPasswordComponent implements OnInit {
       this.forgotPasswordForm.get(['email'])!.value
     ).subscribe(
       (response)=>{
-      console.log(response);
         
     },
       error=>{

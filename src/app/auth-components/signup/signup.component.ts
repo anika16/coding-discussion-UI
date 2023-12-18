@@ -44,9 +44,7 @@ export class SignupComponent implements OnInit{
   
   }
   signup(){
-    console.log(this.signupForm.value);
     this.service.signup(this.signupForm.value).subscribe((response)=>{
-      console.log(response);
       if(response.id !== null){
         this.snackbar.open(
           "You are registered successfully",

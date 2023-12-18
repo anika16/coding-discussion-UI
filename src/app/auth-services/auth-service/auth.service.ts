@@ -53,6 +53,5 @@ export class AuthService {
   }
 
   log(message: string): void {
-    console.log("User Auth service" + message);
   }
 }

@@ -30,7 +30,6 @@ export class UsersComponent implements OnInit{
     this.service.makeAdmin(userId).subscribe(
       (res) => {
         this.snackBar.open(`User made as Admin successfully.`, 'Close', {duration: 5000})
-        console.log(`User with userId ${userId} made as Admin successfully.`);
       },
       (error) => {
         this.snackBar.open("Something went wrong, Please try again later.", 'Close', {duration: 5000})
@@ -70,7 +69,6 @@ export class UsersComponent implements OnInit{
     this.service.toggleUserAccess(userId).subscribe(
       (res) => {
         this.snackBar.open(`User's access is now changed successfully.`, 'Close', {duration: 5000})
-        console.log(`User with userId ${userId}'s access is now changed successfully.`);
       },
       (error) => {
         this.snackBar.open("Something went wrong, Please try again later.", 'Close', {duration: 5000})

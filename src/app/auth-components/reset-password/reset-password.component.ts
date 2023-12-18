@@ -48,7 +48,6 @@ export class ResetPasswordComponent implements OnInit {
       this.resetForm.get(['password'])!.value
     ).subscribe(
       (response)=>{
-      console.log(response);
       this.snackBar.open("Password reset successful", 'Close', {duration: 5000})
       this.router.navigateByUrl("login");
     },

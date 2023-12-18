@@ -39,7 +39,6 @@ export class OtpValidatorComponent {
       this.otpForm.get(['otp'])!.value
     ).subscribe(
       (response)=>{
-      console.log(response);
       this.snackBar.open("OTP validation Successful", 'Close', {duration: 5000})
       this.router.navigateByUrl("reset-password");
     },
@@ -73,7 +72,6 @@ export class OtpValidatorComponent {
       this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
 
       if (seconds == 0) {
-        console.log("finished");
         clearInterval(timer);
         this.otpForm.disable();
       }
