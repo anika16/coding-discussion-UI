@@ -3,6 +3,7 @@ import { QuestionService } from '../../user-services/question-service/question.s
 import { StorageService } from 'src/app/auth-services/storage-service/storage.service';
 import { DashboardService } from '../../user-services/dashboard-service/dashboard.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
   total!:number;
   paramName= 'search';
   paramValue = this.queryParams.get(this.paramName);
-  constructor(private service: QuestionService, private router: Router){
+  constructor(private service: QuestionService, private router: Router, private snackBar: MatSnackBar){
 
   }
   ngOnInit(): void {
@@ -37,9 +38,20 @@ export class DashboardComponent implements OnInit {
             question.userName="Unkown User";
           }
           question['isQuestionEditable'] = (question.userId === StorageService.getUserId() || StorageService.getIsAdmin().toLowerCase() === 'true');
+          question['isQuestionDeletable'] = StorageService.getIsAdmin().toLowerCase() === 'true';
         })
         this.total = res.totalPages * 5;
       }
+    })
+  }
+
+  deleteQuestion(questionId: number){
+    this.service.deleteQuestion(questionId).subscribe((res) => {
+      this.snackBar.open(res,"Close",{duration:5000});
+      window.location.reload();
+    },
+    (error) => {
+      this.snackBar.open("Something went wrong","Close",{duration:5000});
     })
   }
 

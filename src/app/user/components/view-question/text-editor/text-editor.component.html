@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="content">
+
+		<form [formGroup]="validateForm">
+			<div class="editor">
+				<ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+				</ngx-editor-menu>
+				<ngx-editor [editor]="editor" formControlName="body" [(ngModel)]="htmlContent">
+				</ngx-editor>
+			</div>
+            <div class="form-field">
+                <div class="imgText">
+                    <b>Add Image Here</b>
+                </div>
+                <div class="image-preview" *ngIf="selectedFile">
+                  <img [src]="imagePreview" height="50" alt="Image Preview">
+                </div>
+                <input class="input-image" id="file" accept="image/png, image/jpeg" (change)="onFileSelected($event)" type="file">
+              </div>
+              <button mat-raised-button (click)="addAnswer()" color="accent">Post Your Answer</button>
+		</form>
+	</div>
+</div>

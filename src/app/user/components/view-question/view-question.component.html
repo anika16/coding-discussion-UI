@@ -5,7 +5,7 @@
     <b>{{ question.userName }}</b>
   </p>
   <div class="question-body">
-    <p>Body: {{ question.body }}</p>
+    <p>{{ question.body }}</p>
     <div class="tag-list">
       <mat-chip-listbox>
         <mat-chip *ngFor="let tag of question.tags" color="primary">{{
@@ -22,7 +22,7 @@
     <div>
       <h5>Answerd by: <b>{{ answer.userName }}</b> Answered on: <b>{{ answer.createdDate | date:'MMM d, y, h:mm a' }}</b>
       </h5>
-      <p>{{ answer.body }}</p>
+      <div [innerHTML]="answer.renderedHtmlContent"></div>
       <div *ngIf="answer.convertedImg">
         <img [src]="answer.convertedImg" />
       </div>
@@ -34,12 +34,13 @@
     <div>
       <h2>Post Answer</h2>
     </div>
-    <form [formGroup]="validateForm" (ngSubmit)="addAnswer()">
+    <!-- <form [formGroup]="validateForm" (ngSubmit)="addAnswer()">
       <div class="form-field">
         <mat-form-field appearance="fill" class="custom-mat-form-field">
-          <mat-label>Add your answer here</mat-label>
-          <textarea matInput rows="2" placeholder="Solution ...." formControlName="body"></textarea>
-        </mat-form-field>
+          <mat-label>Add your answer here</mat-label> -->
+          <!-- <textarea matInput rows="2" placeholder="Solution ...." formControlName="body"></textarea> -->
+          <app-text-editor [questionId]="questionId"></app-text-editor>
+        <!-- </mat-form-field>
       </div>
       <div class="form-field">
         <div class="image-preview" *ngIf="selectedFile">
@@ -48,6 +49,7 @@
         <input id="file" accept="image/png, image/jpeg" (change)="onFileSelected($event)" type="file">
       </div>
       <button mat-raised-button color="accent">Post Your Answer</button>
-    </form>
+    </form> -->
+    
   </div>
 </div>

@@ -12,7 +12,6 @@ export class OtpValidationGuard  implements CanActivate {
   constructor(private router: Router, private snackBar: MatSnackBar){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    debugger
     if(!StorageService.hasOtpUser()){
       this.router.navigateByUrl('login');
       this.snackBar.open(

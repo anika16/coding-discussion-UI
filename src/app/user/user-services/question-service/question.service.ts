@@ -12,6 +12,15 @@ let BASIC_URL = "";
 })
 export class QuestionService {
 
+  deleteQuestion(questionId: number) {
+    let userId = StorageService.getUserId();
+    return this.http.delete(BASIC_URL + `api/deleteQuestion/${userId}/${questionId}`,
+      {
+        responseType: 'text',
+        headers:this.createAuthorizationHeader()
+      })
+  }
+
   editQuestion(questionDTO: any, questionId: number) {
     questionDTO.userId = StorageService.getUserId();
     return this.http.put<[]>(BASIC_URL + `api/edit/question/${questionId}`, questionDTO,{

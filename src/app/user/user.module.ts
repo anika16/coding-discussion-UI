@@ -19,6 +19,8 @@ import { DashboardSearchComponent } from './components/dashboard-search/dashboar
 import { EditQuestionComponent } from './components/edit-question/edit-question.component';
 import { AskedByMeComponent } from './components/asked-by-me/asked-by-me.component';
 import { UsersComponent } from './components/users/users.component';
+import { TextEditorComponent } from './components/view-question/text-editor/text-editor.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { UsersComponent } from './components/users/users.component';
     DashboardSearchComponent,
     EditQuestionComponent,
     AskedByMeComponent,
-    UsersComponent
+    UsersComponent,
+    TextEditorComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { UsersComponent } from './components/users/users.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxEditorModule
   ]
 })
 export class UserModule { }

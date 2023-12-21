@@ -12,7 +12,6 @@ export class ResetPasswordGuard  implements CanActivate {
   constructor(private router: Router, private snackBar: MatSnackBar){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    debugger
     if(!StorageService.isOtpValidated() || StorageService.isOtpValidated().toLowerCase() === 'false'){
       this.router.navigateByUrl('login');
       this.snackBar.open(
