@@ -22,6 +22,7 @@ import { resolve } from 'path';
 import { url } from 'inspector';
 import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { environment } from 'src/environments/environment.prod';
     MatCardModule,
     MatInputModule,
     HttpClientModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule

@@ -12,6 +12,10 @@ import { AuthService } from 'src/app/auth-services/auth-service/auth.service';
 export class SignupComponent implements OnInit{
 
   signupForm!: FormGroup;
+  roles = [
+    {value :'Developer',viewValue: 'Developer'},
+    {value:'DevOps',viewValue: 'DevOps'},
+    {value:'QA', viewValue: 'QA'}]
  
   constructor(
     private service: AuthService,
@@ -26,8 +30,8 @@ export class SignupComponent implements OnInit{
       name: ['', Validators.required],
       email: ['', validators],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-
+      confirmPassword: ['', Validators.required],
+      role: ['', Validators.required]
     },{ validator:this.confirmationValidator})
   }
 

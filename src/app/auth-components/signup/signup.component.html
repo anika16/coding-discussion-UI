@@ -17,6 +17,16 @@
                 </div>
                 <div class="form-input">
                     <mat-form-field>
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="role">
+                            <mat-option *ngFor="let role of roles" [value]="role.value">{{
+                              role.viewValue
+                            }}</mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="form-input">
+                    <mat-form-field>
                         <mat-label>Password</mat-label>
                         <input matInput placeholder="Enter your password" name="password" type="password" required
                             formControlName="password">
