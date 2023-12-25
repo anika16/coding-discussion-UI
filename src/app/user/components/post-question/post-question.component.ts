@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class PostQuestionComponent implements OnInit{
 
   tags: any = [];
-  isSubmitting: boolean = false;
+  isLoading: boolean = false;
   addOnBlur =  true;
   validateForm!: FormGroup;
 
@@ -69,17 +69,18 @@ export class PostQuestionComponent implements OnInit{
   }
 
   postQuestion(){
+    this.isLoading = true;
     this.service.postQuestion(this.validateForm.value).subscribe((res)=>{
       if(res.id!=null){
+        this.isLoading = false;
         this.snackBar.open("Question posted succesfully","Close",{duration:5000});
         this.router.navigateByUrl('/user/dashboard');
       }
       else{
+        this.isLoading = false;
         this.snackBar.open("Something went wrong","Close",{duration:5000});
+        this.router.navigateByUrl('/user/dashboard');
       }
     });
   }
-  
-
-  
 }

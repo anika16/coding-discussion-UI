@@ -13,7 +13,7 @@ import { StorageService } from 'src/app/auth-services/storage-service/storage.se
 export class ResetPasswordComponent implements OnInit {
 
   resetForm!:FormGroup;
-
+  isLoading: boolean = false;
 
   constructor(
     private service: AuthService, 
@@ -43,15 +43,18 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword(){
+    this.isLoading = true;
     this.service.resetPassword(
       this.resetForm.get(['email'])!.value,
       this.resetForm.get(['password'])!.value
     ).subscribe(
       (response)=>{
-      this.snackBar.open("Password reset successful", 'Close', {duration: 5000})
+        this.isLoading = false;
+      this.snackBar.open("Password reset successfully", 'Close', {duration: 5000})
       this.router.navigateByUrl("login");
     },
       error=>{
+        this.isLoading = false;
         if(error.error){
           this.snackBar.open(error.error, 'Close', {duration: 5000})
         }else{

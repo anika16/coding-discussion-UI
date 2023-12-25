@@ -16,6 +16,7 @@ export class AskedByMeComponent {
   total!:number;
   paramName= 'search';
   paramValue = this.queryParams.get(this.paramName);
+  isLoading: boolean = false;
   constructor(private service: QuestionService, private router: Router){
 
   }
@@ -24,7 +25,9 @@ export class AskedByMeComponent {
 }
 
   getAllQuestionsAskedByMe(){
+    this.isLoading = true;
     this.service.getAllQuestionsAskedByMe().subscribe((res)=>{
+      this.isLoading = false;
       this.questions = res.questionDTOlist;
       this.questions.forEach(question => {
         question['isQuestionEditable'] = question.userId === StorageService.getUserId();

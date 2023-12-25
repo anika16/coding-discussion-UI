@@ -1,27 +1,50 @@
-<div class="opt-password-container">
+<div *ngIf="!isLoading">
+  <div class="opt-password-container">
     <!-- <fieldset [disabled]="false"> -->
     <mat-card class="opt-password-card">
-        <mat-card-content>
-            <h2 class="opt-password-caption">Enter OTP to Proceed</h2>
-            <form [formGroup]="otpForm">
-                <div class="form-input">
-                    <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Enter your email" name="email" type="email"
-                            formControlName="email" [readonly]="true">    
-                       </mat-form-field>
-                       <mat-form-field>
-                       <mat-label>Enter OTP</mat-label>
-                            <input matInput placeholder="Enter your OTP" name="otp"
-                                formControlName="otp">
-                       </mat-form-field> 
-                </div>
-                <b>Enter OTP in {{display}} Seconds</b>
-                <button type="submit" mat-raised-button color="primary" class="submit-button"
-                    [disabled]="otpForm.invalid || otpForm.disabled" (click)="submitOtp()">Submit</button>
-            </form>
-        </mat-card-content>
+      <mat-card-content>
+        <h2 class="opt-password-caption">Enter OTP to Proceed</h2>
+        <form [formGroup]="otpForm">
+          <div class="form-input">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="Enter your email"
+                name="email"
+                type="email"
+                formControlName="email"
+                [readonly]="true"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Enter OTP</mat-label>
+              <input
+                matInput
+                placeholder="Enter your OTP"
+                name="otp"
+                formControlName="otp"
+              />
+            </mat-form-field>
+          </div>
+          <b>Enter OTP in {{ display }} Seconds</b>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            class="submit-button"
+            [disabled]="otpForm.invalid || otpForm.disabled"
+            (click)="submitOtp()"
+          >
+            Submit
+          </button>
+        </form>
+      </mat-card-content>
     </mat-card>
-<!-- </fieldset> -->
+    <!-- </fieldset> -->
+  </div>
+</div>
 
+<div *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
 </div>

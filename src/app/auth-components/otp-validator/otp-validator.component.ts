@@ -15,6 +15,7 @@ export class OtpValidatorComponent {
   display: any;
   isValidOPT:boolean=true;
   otpForm!:FormGroup;
+  isLoading: boolean = false;
   constructor(
     private service: AuthService, 
     private fb: FormBuilder,
@@ -34,15 +35,18 @@ export class OtpValidatorComponent {
 
    
   submitOtp(){
+    this.isLoading = true;
     this.service.submitOtp(
       this.otpForm.get(['email'])!.value,
       this.otpForm.get(['otp'])!.value
     ).subscribe(
       (response)=>{
-      this.snackBar.open("OTP validation Successful", 'Close', {duration: 5000})
-      this.router.navigateByUrl("reset-password");
+        this.isLoading = false;
+        this.snackBar.open("OTP validation Successful", 'Close', {duration: 5000})
+        this.router.navigateByUrl("reset-password");
     },
       error=>{
+        this.isLoading = false;
         if(error.error){
           this.snackBar.open(error.error, 'Close', {duration: 5000})
         }else{

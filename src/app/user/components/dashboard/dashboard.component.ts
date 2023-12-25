@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   total!:number;
   paramName= 'search';
   paramValue = this.queryParams.get(this.paramName);
+  isLoading: boolean = false;
   constructor(private service: QuestionService, private router: Router, private snackBar: MatSnackBar){
 
   }
@@ -30,7 +31,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllQuestions(){
-    this.service.getAllQuestion(this.pageNum).subscribe((res)=>{
+    this.isLoading = true;
+    this.service.getAllQuestion(this.pageNum).subscribe((res: any)=>{
+      this.isLoading = false;
       if(this.paramValue == null){
         this.questions = res.questionDTOlist;
         this.questions.forEach(question => {
@@ -46,11 +49,14 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteQuestion(questionId: number){
+    this.isLoading = true;
     this.service.deleteQuestion(questionId).subscribe((res) => {
+      this.isLoading = false;
       this.snackBar.open(res,"Close",{duration:5000});
       window.location.reload();
     },
     (error) => {
+      this.isLoading = false;
       this.snackBar.open("Something went wrong","Close",{duration:5000});
     })
   }

@@ -32,3 +32,10 @@
         width: 100%;
     }
 }
+
+mat-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50px !important;
+}

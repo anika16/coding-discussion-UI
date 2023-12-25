@@ -16,7 +16,17 @@
     <button mat-button routerLink="/user/askedByMe" routerLinkActive="active">Asked By Me</button>
     <button mat-button routerLink="/user/dashboard" routerLinkActive="active">Dashboard</button>
     <button mat-button routerLink="/user/question" routerLinkActive="active">Post Question</button>
-    <button mat-button (click)="logout()" routerLinkActive="active">Log Out</button>
+    <button mat-button [matMenuTriggerFor]="menu"> <i class="fas fa-user"></i> </button>
+    <mat-menu #menu="matMenu">
+      <h1 class="heading-my-profile">My Profile</h1>
+      <hr>
+      <div *ngIf="user" class="user-email">{{user.email}}</div>
+      <hr>
+      <a mat-menu-item (click)="popUpForChangeUserName()">Change Username</a>
+      <a mat-menu-item (click)="popUpForChangePassword()">Change Password</a>
+      <a mat-menu-item (click)="logout()" routerLinkActive="active">Log Out</a>
+    </mat-menu>
+    <!-- <button mat-button (click)="logout()" routerLinkActive="active">Log Out</button> -->
   </mat-toolbar>
 </div>
 <router-outlet></router-outlet>

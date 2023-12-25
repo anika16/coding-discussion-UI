@@ -32,6 +32,7 @@ export class TextEditorComponent implements OnInit,OnDestroy {
   answers: any[] = [];
   data = {} as any;
   htmlContent = "";
+  isLoading: boolean = false;
 
   editor!: Editor;
   toolbar: Toolbar = [
@@ -76,9 +77,11 @@ export class TextEditorComponent implements OnInit,OnDestroy {
     this.data.body =  this.htmlContent;
     console.log(this.data);
     this.formData.append("multipartFile", this.selectedFile);
-    this.answerService.postAnswer(this.data).subscribe((res) => {
+    this.isLoading = true;
+    this.answerService.postAnswer(this.data).subscribe((res: any) => {
+      this.isLoading = false;
     this.answerService.postAnswerImage(this.formData, res.id).subscribe(
-      (res) => {
+      (res: any) => {
       }
     );
 

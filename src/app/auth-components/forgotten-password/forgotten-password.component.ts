@@ -13,6 +13,7 @@ import { StorageService } from 'src/app/auth-services/storage-service/storage.se
 export class ForgottenPasswordComponent implements OnInit {
 
   forgotPasswordForm!:FormGroup;
+  isLoading :boolean = false;
 
   constructor( 
     private service: AuthService,
@@ -29,13 +30,15 @@ export class ForgottenPasswordComponent implements OnInit {
    }
 
   submitEmail(){
+    this.isLoading = true;
     this.service.forgotPassword(
       this.forgotPasswordForm.get(['email'])!.value
     ).subscribe(
       (response)=>{
-        
+        this.isLoading = false;
     },
       error=>{
+        this.isLoading = false;
         if(error.error){
           this.snackBar.open(error.error, 'Close', {duration: 5000})
         }else{

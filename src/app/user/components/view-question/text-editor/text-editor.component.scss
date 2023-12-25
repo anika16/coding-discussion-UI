@@ -89,3 +89,10 @@ img{
     margin-top: 10px;
     color: rgb(0, 0, 0);
 }
+
+mat-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50px !important;
+}

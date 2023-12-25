@@ -10,6 +10,24 @@ let BASIC_URL = "";
   providedIn: 'root'
 })
 export class ManageUserService {
+  changePassword(changePasswordDTO: any): Observable<any> {
+    return this.http.post(BASIC_URL+`change-password`,changePasswordDTO,{
+      headers:this.createAuthorizationHeader(),
+      responseType: 'text'
+    })
+  }
+
+  changeUserName(userId: number,newUserName: string):Observable<any> {
+    return this.http.patch(BASIC_URL+`api/user/${userId}/${newUserName}`,{},{
+      headers:this.createAuthorizationHeader()
+    })
+  }
+
+  getUser(userId: number):Observable<any> {
+    return this.http.get(BASIC_URL+`api/user/${userId}`,{
+      headers:this.createAuthorizationHeader()
+    });
+  }
 
   constructor(private http: HttpClient, private configService: ConfigService) {
     BASIC_URL = this.configService.baseUrl as string;

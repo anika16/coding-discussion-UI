@@ -20,9 +20,14 @@ import { ResetPasswordComponent } from './auth-components/reset-password/reset-p
 import { ConfigService } from './config.service';
 import { resolve } from 'path';
 import { url } from 'inspector';
-import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+import { tap } from 'rxjs';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ChangeUsernameComponent } from './change-username/change-username.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,9 @@ import {MatSelectModule} from '@angular/material/select';
     SearchBarComponent,
     ForgottenPasswordComponent,
     OtpValidatorComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChangeUsernameComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

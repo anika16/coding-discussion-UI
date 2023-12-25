@@ -16,7 +16,7 @@ import { StorageService } from 'src/app/auth-services/storage-service/storage.se
 export class EditQuestionComponent {
 
   tags: any = [];
-  isSubmitting: boolean = false;
+  isLoading: boolean = false;
   addOnBlur =  true;
   validateForm!: FormGroup;
   question: any;
@@ -72,12 +72,15 @@ export class EditQuestionComponent {
   }
 
   editQuestion(){
+    this.isLoading = true;
     this.service.editQuestion(this.validateForm.value,this.questionId).subscribe((res: any)=>{
       if(res.id!=null){
+        this.isLoading = false;
         this.snackBar.open("Question updated succesfully","Close",{duration:5000});
         this.router.navigateByUrl('/user/dashboard');
       }
       else{
+        this.isLoading = false;
         this.snackBar.open("Something went wrong","Close",{duration:5000});
         this.router.navigateByUrl('/user/dashboard');
       }

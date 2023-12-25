@@ -1,33 +1,44 @@
-<div class="question-card" style="margin-top: 30px" *ngIf="question">
-  <h2>{{ question.title }}</h2>
-  <p>
-    Asked On: <b>{{ question.createdDate | date : "EEEE, MMMM d, y" }}</b> by
-    <b>{{ question.userName }}</b>
-  </p>
-  <div class="question-body">
-    <p>{{ question.body }}</p>
-    <div class="tag-list">
-      <mat-chip-listbox>
-        <mat-chip *ngFor="let tag of question.tags" color="primary">{{
-          tag
+<div *ngIf="!isLoading">
+  <div class="question-card" style="margin-top: 30px" *ngIf="question">
+    <h2>{{ question.title }}</h2>
+    <p>
+      Asked On: <b>{{ question.createdDate | date : "EEEE, MMMM d, y" }}</b> by
+      <b>{{ question.userName }}</b>
+    </p>
+    <div class="question-body">
+      <p>{{ question.body }}</p>
+      <div class="tag-list">
+        <mat-chip-listbox>
+          <mat-chip *ngFor="let tag of question.tags" color="primary">{{
+            tag
           }}</mat-chip>
-      </mat-chip-listbox>
-    </div>
-  </div>
-</div>
-
-<div *ngFor="let answer of answers; let i = index;" class="answer-card" style="margin-top: 30px;" >
-<h2>Answer</h2>
-  <div>
-    <div>
-      <h5>Answerd by: <b>{{ answer.userName }}</b> Answered on: <b>{{ answer.createdDate | date:'MMM d, y, h:mm a' }}</b>
-      </h5>
-      <div [innerHTML]="answer.renderedHtmlContent"></div>
-      <div *ngIf="answer.convertedImg">
-        <img [src]="answer.convertedImg" />
+        </mat-chip-listbox>
       </div>
     </div>
   </div>
+
+  <div
+    *ngFor="let answer of answers; let i = index"
+    class="answer-card"
+    style="margin-top: 30px"
+  >
+    <h2>Answer</h2>
+    <div>
+      <div>
+        <h5>
+          Answerd by: <b>{{ answer.userName }}</b> Answered on:
+          <b>{{ answer.createdDate | date : "MMM d, y, h:mm a" }}</b>
+        </h5>
+        <div [innerHTML]="answer.renderedHtmlContent"></div>
+        <div *ngIf="answer.convertedImg">
+          <img [src]="answer.convertedImg" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
 </div>
 <div class="answer-section" style="margin-top: 30px">
   <div>
@@ -38,9 +49,9 @@
       <div class="form-field">
         <mat-form-field appearance="fill" class="custom-mat-form-field">
           <mat-label>Add your answer here</mat-label> -->
-          <!-- <textarea matInput rows="2" placeholder="Solution ...." formControlName="body"></textarea> -->
-          <app-text-editor [questionId]="questionId"></app-text-editor>
-        <!-- </mat-form-field>
+    <!-- <textarea matInput rows="2" placeholder="Solution ...." formControlName="body"></textarea> -->
+    <app-text-editor [questionId]="questionId"></app-text-editor>
+    <!-- </mat-form-field>
       </div>
       <div class="form-field">
         <div class="image-preview" *ngIf="selectedFile">
@@ -50,6 +61,5 @@
       </div>
       <button mat-raised-button color="accent">Post Your Answer</button>
     </form> -->
-    
   </div>
 </div>

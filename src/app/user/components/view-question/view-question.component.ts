@@ -22,8 +22,7 @@ export class ViewQuestionComponent implements OnInit {
   formData: FormData = new FormData();
   answers: any[] = [];
   renderedHtmlContent!: SafeHtml;
-
-
+  isLoading: boolean = false;
 
   constructor(
     private questionService: QuestionService, 
@@ -44,7 +43,9 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   getQuestionById(){
-    this.questionService.getQuestionById(this.questionId).subscribe((res) => {
+    this.isLoading = true;
+    this.questionService.getQuestionById(this.questionId).subscribe((res: any) => {
+      this.isLoading = false;
       this.question = res.questionDTO;
       res.answerDTOList.forEach((element: any) => {
         if(element.file != null){

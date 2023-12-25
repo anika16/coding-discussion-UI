@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/auth-services/auth-service/auth.service';
 export class LoginComponent implements OnInit{
 
   loginForm!:FormGroup;
+  isLoading: boolean = false;
 
   constructor( 
     private service: AuthService,
@@ -28,14 +29,17 @@ export class LoginComponent implements OnInit{
   }
 
   login():void{
+    this.isLoading = true;
     this.service.login(
       this.loginForm.get(['email'])!.value,
       this.loginForm.get(['password'])!.value,
     ).subscribe(
       (response)=>{
+        this.isLoading = false;
         this.router.navigateByUrl("user/dashboard");
     },
       error=>{
+        this.isLoading = false;
         this.snackBar.open(error.error,'Close',{
           duration:5000,
           panelClass:'error-snackbar'

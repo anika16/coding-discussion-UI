@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Change Username</h1>
+<div mat-dialog-content>
+    <div>Your Current Username is {{data.currentUserName}}</div>
+  <mat-form-field>
+    <mat-label>Enter new Username</mat-label>
+    <input matInput [(ngModel)]="data.newUserName" required="true">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button *ngIf="data.newUserName.length > 0" mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

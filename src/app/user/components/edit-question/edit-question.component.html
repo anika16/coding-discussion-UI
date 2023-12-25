@@ -1,5 +1,5 @@
-<mat-spinner [color]="'primary'" [diameter]="60" [strokeWidth]="6" *ngIf="isSubmitting"></mat-spinner>
-<div class="parent" *ngIf="!isSubmitting">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="parent" *ngIf="!isLoading">
   <div class="child">
     <h2 class="question-caption">Edit Question</h2>
     <h2></h2>

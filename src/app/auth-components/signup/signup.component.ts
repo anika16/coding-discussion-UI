@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/auth-services/auth-service/auth.service';
 })
 export class SignupComponent implements OnInit{
 
+  isLoading: boolean = false;
   signupForm!: FormGroup;
   roles = [
     {value :'Developer',viewValue: 'Developer'},
@@ -48,8 +49,10 @@ export class SignupComponent implements OnInit{
   
   }
   signup(){
-    this.service.signup(this.signupForm.value).subscribe((response)=>{
+    this.isLoading = true;
+    this.service.signup(this.signupForm.value).subscribe((response: any)=>{
       if(response.id !== null){
+        this.isLoading = false;
         this.snackbar.open(
           "You are registered successfully",
           'Close',
@@ -58,9 +61,11 @@ export class SignupComponent implements OnInit{
         this.router.navigateByUrl('/login');
       }
       else{
+        this.isLoading = false;
         this.snackbar.open(response.message, 'Close', {duration: 5000})
       }
     },(error:any)=>{
+      this.isLoading = false;
       if(error.error){
         this.snackbar.open(error.error, 'Close', {duration: 5000})
       }else{

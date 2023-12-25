@@ -15,6 +15,7 @@ export class DashboardSearchComponent {
   total!: number;
   paramName = 'search';
   paramValue = '';
+  isLoading: boolean = false;
 
   constructor(private service: DashboardService, 
     private activatedRoute: ActivatedRoute, 
@@ -29,11 +30,14 @@ export class DashboardSearchComponent {
 
   postQuestion(question: string) {
     if (question.length > 0) {
+      this.isLoading = true;
       this.service.postQuestionHttp(question).subscribe(
         (res: any) => {
+          this.isLoading = false;
           this.questions = res.questionDTOlist;
         },
         (error: any) => {
+          this.isLoading = false;
           console.error("Error fetching questions:", error);
         }
       );
