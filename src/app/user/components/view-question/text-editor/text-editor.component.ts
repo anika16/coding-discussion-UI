@@ -54,7 +54,6 @@ export class TextEditorComponent implements OnInit,OnDestroy {
   // });
 
   get doc(): AbstractControl {
-    console.log(this.validateForm.get('body'))
     return this.validateForm.get('body') as AbstractControl;
   }
 
@@ -72,10 +71,7 @@ export class TextEditorComponent implements OnInit,OnDestroy {
   addAnswer(){
     this.data.questionId = this.questionId;
     this.data.userId = StorageService.getUserId();
-    console.log(this.validateForm.value);
-    console.log(this.validateForm.value.type);
     this.data.body =  this.htmlContent;
-    console.log(this.data);
     this.formData.append("multipartFile", this.selectedFile);
     this.isLoading = true;
     this.answerService.postAnswer(this.data).subscribe((res: any) => {

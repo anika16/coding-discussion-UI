@@ -31,7 +31,6 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(): void {
 
-    console.log(StorageService.getUser());
     this.updateUserLoggedInStatus();
     this.router.events.subscribe((event: any)=>{
   
@@ -60,7 +59,6 @@ export class AppComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.user.name = result.newUserName;
       this.userService.changeUserName(this.user.id,this.user.name).subscribe(
         (res: any) => {
@@ -79,10 +77,8 @@ export class AppComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       let changePasswordDTO = result;
       changePasswordDTO.email = this.user.email;
-      console.log(changePasswordDTO);
       this.userService.changePassword(changePasswordDTO).subscribe(
           (res: any) => {
             this.snackBar.open(res,"Close",{duration:5000});

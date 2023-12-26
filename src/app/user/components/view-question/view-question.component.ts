@@ -57,7 +57,6 @@ export class ViewQuestionComponent implements OnInit {
           });
         
           element.renderedHtmlContent = this.sanitizeHtmlContent(form.get("editorContent")?.value);
-          console.log(this.renderedHtmlContent);
         }
         this.answers.push(element); 
         
