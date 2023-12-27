@@ -21,6 +21,7 @@ import { AskedByMeComponent } from './components/asked-by-me/asked-by-me.compone
 import { UsersComponent } from './components/users/users.component';
 import { TextEditorComponent } from './components/view-question/text-editor/text-editor.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { UpvoteComponent } from './components/view-question/upvote/upvote.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgxEditorModule } from 'ngx-editor';
     EditQuestionComponent,
     AskedByMeComponent,
     UsersComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    UpvoteComponent
   ],
   imports: [
     CommonModule,

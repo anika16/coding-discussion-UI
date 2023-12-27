@@ -28,6 +28,7 @@
         <h5>
           Answerd by: <b>{{ answer.userName }}</b> Answered on:
           <b>{{ answer.createdDate | date : "MMM d, y, h:mm a" }}</b>
+          <app-upvote [answerId]="answer.id"></app-upvote>
         </h5>
         <div [innerHTML]="answer.renderedHtmlContent"></div>
         <div *ngIf="answer.convertedImg">

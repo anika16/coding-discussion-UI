@@ -1,0 +1,21 @@
+.upvote-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .upvote-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex; 
+    align-items: center; 
+  }
+  
+  .upvote-icon {
+    font-size: 1em;
+    margin-right: 0.5em; 
+  }
+  
+  .upvote-count {
+    font-size: 1.2em; 
+  }
