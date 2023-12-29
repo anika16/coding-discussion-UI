@@ -10,6 +10,7 @@ let BASIC_URL = "";
   providedIn: 'root'
 })
 export class ManageUserService {
+  
   changePassword(changePasswordDTO: any): Observable<any> {
     return this.http.post(BASIC_URL+`change-password`,changePasswordDTO,{
       headers:this.createAuthorizationHeader(),

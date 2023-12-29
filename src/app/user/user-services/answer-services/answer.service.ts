@@ -22,6 +22,13 @@ export class AnswerService {
     });
   }
 
+  submitVote(userId: number, answerId: number, isUpvoting: boolean): Observable<any> {
+    return this.http.patch(BASIC_URL+`api/answer/submit-upvote/${userId}/${answerId}/${isUpvoting}`,{},{
+      headers:this.createAuthorizationHeader(),
+      responseType: 'text'
+    }) 
+  }
+
   createAuthorizationHeader():HttpHeaders{
     let authHeaders = new HttpHeaders();
     return authHeaders.set(

@@ -22,13 +22,13 @@
     class="answer-card"
     style="margin-top: 30px"
   >
-    <h2>Answer</h2>
+    <h2>Answer <span *ngIf="answer.isApproved" class="approved-title">Approved</span></h2>
     <div>
       <div>
         <h5>
           Answerd by: <b>{{ answer.userName }}</b> Answered on:
           <b>{{ answer.createdDate | date : "MMM d, y, h:mm a" }}</b>
-          <app-upvote [answerId]="answer.id"></app-upvote>
+          <app-upvote [answer]="answer"></app-upvote>
         </h5>
         <div [innerHTML]="answer.renderedHtmlContent"></div>
         <div *ngIf="answer.convertedImg">
